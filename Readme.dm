@@ -41,8 +41,3 @@ spec:
       port: 80
       targetPort: 8080
   type: LoadBalancer
-
-
-😍Access on browser.
-
-
