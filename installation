@@ -49,10 +49,15 @@ kubeadm token create --print-join-command
 kubectl get nodes
 
 O/P
+root@ip-172-31-23-168:~# kubectl get nodes
 NAME               STATUS   ROLES                  AGE   VERSION
-ip-172-31-17-122   Ready    <none>                 32m   v1.20.0
-ip-172-31-21-26    Ready    <none>                 31m   v1.20.0
-ip-172-31-23-168   Ready    control-plane,master   35m   v1.20.0
+ip-172-31-17-122   Ready    <none>                 36m   v1.20.0
+ip-172-31-21-26    Ready    <none>                 36m   v1.20.0
+ip-172-31-23-168   Ready    control-plane,master   40m   v1.20.0
+root@ip-172-31-23-168:~# date
+Sun Oct  1 06:18:32 UTC 2023
+root@ip-172-31-23-168:~#
+
 
 
 
