@@ -1,1 +1,59 @@
+Steps needed to set up a Kubernetes cluster using kubeadm.
+
+Reqirement 
+1-2 GB or more of RAM per machine 
+2-2 CPUs or more.
+3-Create two nodes 
+
+Perform below task on Both Master & Worker Node
+1-update
+2-Install these package:- apt-transport-https, ca-certificates ,curl,docker(enable and start docker ).
+3-Adding GPG keys.
+curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg
+4-Add the repository to the sourcelist.
+echo 'deb https://packages.cloud.google.com/apt kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+5-update and install kubeadm,kubectl,kubelet
+
+
+All commands for Both Master & Worker Node
+    1  apt update
+    2  apt install docker.io -y
+    3  systemctl enable  docker
+    4  systemctl enable
+    5  systemctl start docker
+    6  apt-get install apt-transport-https ca-certificates curl -y
+    7  curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg
+    8  echo 'deb https://packages.cloud.google.com/apt kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+    9  apt update
+    10  apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
+
+==================================now only for master==========================================
+1-->Initialize Kubernetes on master
+kubeadm init
+
+After that will get below commands , execute directly no master
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+2-->Now create network(here i am using weave network)
+kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+
+3-->Create a token for worker nodes to join the  matser node:
+kubeadm token create --print-join-command
+=>Here we will get command  ,will executed on node(i.e. worker node) that want to join the (master)kubernetes cluster
+
+😊Finally executed below command on master to check which nodes join the cluster.
+
+kubectl get nodes
+
+O/P
+NAME               STATUS   ROLES                  AGE   VERSION
+ip-172-31-17-122   Ready    <none>                 32m   v1.20.0
+ip-172-31-21-26    Ready    <none>                 31m   v1.20.0
+ip-172-31-23-168   Ready    control-plane,master   35m   v1.20.0
+
+
+
 
