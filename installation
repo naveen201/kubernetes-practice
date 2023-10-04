@@ -62,3 +62,20 @@ root@ip-172-31-23-168:~#
 
 
 
++++++++++++++++++++++++++++++
+#sudo su -
+#apt update -y
+# apt install docker.io -y
+#systemctl enable  docker
+#systemctl start docker
+#apt-get install apt-transport-https ca-certificates curl -y
+#curl -fsSL "https://packages.cloud.google.com/apt/doc/apt-key.gpg" | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kubernetes-archive-keyring.gpg
+#echo 'deb https://packages.cloud.google.com/apt kubernetes-xenial main' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+#apt update
+# apt install kubeadm=1.20.0-00 kubectl=1.20.0-00 kubelet=1.20.0-00 -y
+
+
+
+
+
+
